@@ -1,7 +1,7 @@
 /**
  * Tabuleiro do jogo tic-tac-toe
  */
-class GameBoard {
+export class GameBoard {
   /**
    * @param {Number} size tamanho do tabuleiro
    * @throws {Error} se o tamanho passado for menor do que 3 ou maior do que 10
