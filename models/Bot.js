@@ -35,12 +35,14 @@ export class Bot {
       row.forEach((column, columnIndex) => {
         if(column === 0){
           const size = board.length;
-          const positionInNumber = rowIndex * (size - 1) + (columnIndex + 1);
+          const positionInNumber = (rowIndex * size) + columnIndex;
 
           available.push(positionInNumber);
         }
       });
     });
+
+    return available;
   }
 
 }
