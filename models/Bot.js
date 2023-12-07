@@ -4,25 +4,24 @@ import { getRndInteger } from "../utils/random.js";
  * Bot do tic-tac-toe
  */
 export class Bot {
-  constructor(gameBoard) {
-    this.gameBoard = gameBoard;
-  }
-
   /**
-   * Realiza a jogada aleatória
-   * @param {GameBoard} board tabuleiro que está sendo jogado
+   * Processa uma jogada aleatória, de acordo com o tabuleiro passado
+   * @param {Array<Array<Number>>} board tabuleiro que está sendo jogado
+   * @returns {[Number, Number]} Um array com dois números, em que o primeiro é a linha da jogada e o segundo é a coluna
    */
-  makePlay() {
-    const available = this.#getAvailablePositions(this.gameBoard.getBoardValues());
+  makePlay(board) {
+    const available = this.#getAvailablePositions(board);
 
     if(!available.length) return;
 
     const size = this.gameBoard.size;
-    const positionNumber = getRndInteger(0, available.length);
-    const column = positionNumber % size;
-    const row = Math.floor(positionNumber / size);
+    const positionIndex = getRndInteger(0, available.length);
+    const positionNumber = available[positionIndex];
 
-    this.gameBoard.makeMove(row, column, 2); // Faz a jogada como player 2
+    const row = Math.floor(positionNumber / size);
+    const column = positionNumber % size;
+
+    return [row, column];
   }
 
   /**
@@ -36,7 +35,7 @@ export class Bot {
       row.forEach((column, columnIndex) => {
         if(column === 0){
           const size = board.length;
-          const positionInNumber = row * (size - 1) + (column + 1);
+          const positionInNumber = rowIndex * (size - 1) + (columnIndex + 1);
 
           available.push(positionInNumber);
         }
