@@ -36,7 +36,7 @@ export class GameBoard {
    * @throws {Error} Se o player passado não for 1 ou 2
    */
   playerWins(player) {
-    if (player < 0 || player > 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
+    if (player != 1 || player != 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
 
     return this.#wonByHorizontal(player) || this.#wonByVertical(player) || this.#wonByMainDiagonal(player) || this.#wonBySecondaryDiagonal(player);
   }
@@ -49,9 +49,11 @@ export class GameBoard {
    * Reiniciar o tabuleiro do jogo (Deixando todos os valores em 0)
    */
   restartGameBoard() {
-    this.board.forEach(row => {
-      row = new Array(this.size).fill(0);
-    })
+    for(let row = 0; row < this.size; row++) {
+      for(let col = 0; col < this.size; col ++) {
+        this.board[row][col] = 0;
+      }
+    }
   }
 
   /**
@@ -61,7 +63,7 @@ export class GameBoard {
    * @throws {Error} Se o player passado não for 1 ou 2
   */
   #wonByHorizontal(player) {
-    if(player < 0 || player > 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
+    if(player != 1 || player!=2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
 
     for(let row = 0; row < this.size; row++) { // Percorre as linhas      
       let winLine = true; // Variável para controlar se o player ganhou em uma linha específica
@@ -86,7 +88,7 @@ export class GameBoard {
    * @throws {Error} Se o player passado não for 1 ou 2
   */
   #wonByVertical(player) {
-    if (player < 0 || player > 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
+    if (player != 1 || player!=2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
 
     for (let col = 0; col < this.size; col++) { // Percorre as colunas      
       let winColumn = true; // Variável para controlar se o player ganhou em uma coluna coluna
@@ -110,7 +112,7 @@ export class GameBoard {
    * @returns {Boolean} Verdadeiro, se ganhou pela diagonal principal, falso caso contrário
    */
   #wonByMainDiagonal(player) {
-    if (player < 0 || player > 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
+    if (player != 1 || player!=2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
 
     for(let i = 0; i < this.size; i++) {
       if(this.board[i][i] != player) return false;
@@ -125,7 +127,7 @@ export class GameBoard {
    * @returns {Boolean} Verdadeiro, se ganhou pela diagonal secundária, falso caso contrário
    */
   #wonBySecondaryDiagonal(player) {
-    if (player < 0 || player > 2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
+    if (player != 1 || player!=2) throw new Error('O jogador não pode ser um número diferente de 1 ou 2');
 
     for (let i = 0; i < this.size; i++) {
       const colIndex = (this.size - 1) - i;
