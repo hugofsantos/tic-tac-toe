@@ -1,1 +1,32 @@
-// Código para fazer a integração do tabuleiro.html com as classes tabuleiro e bot
+import { GameBoard } from "../models/GameBoard.js";
+
+let gameboard;
+
+function renderGameboard(size) {
+  gameboard = new GameBoard(size);
+
+  const boardEl = document.getElementById('gameboard');
+
+  const gridValue = new Array(size).fill('1fr').join(' '); // Ex: 1fr 1fr 1fr (Se o tamanho for 3)
+
+  boardEl.style.gridTemplateRows = gridValue;
+  boardEl.style.gridTemplateColumns = gridValue;
+
+  const cells = Array.from({ length: size * size }, (_, index) => {
+    const el = document.createElement('div');
+    el.className = 'cell';
+    el.innerText = '' + (index + 1);
+
+    const row = Math.floor(index / size);
+    const col = index % size;
+
+    el.id = `cell-${row}-${col}`; // Ex: cell_0_2 (Para o elemento da linha 0 e coluna 2, isso vai facilitar na hora de pegar o click depois)
+    return el;
+  });
+
+  boardEl.append(...cells);
+}
+
+const size = Number(prompt('Informe a dimensão: ')); // TODO: Pegar esse valor da página index.html
+
+renderGameboard(size);
