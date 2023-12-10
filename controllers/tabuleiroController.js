@@ -18,7 +18,8 @@ const playerSimbols = {
 
 const playerScores = {
   1: localStorage.getItem('player1Score') || 0,
-  2: localStorage.getItem('player2Score') || 0
+  2: localStorage.getItem('player2Score') || 0,
+  3: localStorage.getItem('player3Score') || 0
 };
 
 
@@ -29,6 +30,7 @@ document.getElementById('new-game-btn').addEventListener('click', function() {
 document.getElementById('new-ranking-btn').addEventListener('click', function() {
   localStorage.setItem('player1Score', 0);
   localStorage.setItem('player2Score', 0);
+  localStorage.setItem('player3Score', 0);
   showPopup('Ranking resetado', 'O ranking foi resetado com sucesso!');
  });
  
@@ -81,11 +83,14 @@ function makePlay(row, col, element) {
     roundTextEl.classList.replace(className, className.replace(String(playerOfTheTurn), String(nextPlayer)));
 
     if (gameboard.playerWins(playerOfTheTurn)) {
-      playerScores[playerOfTheTurn]++;
-      localStorage.setItem(`player${playerOfTheTurn}Score`, playerScores[playerOfTheTurn]);
-      showPopup(`JOGADOR ${playerOfTheTurn} GANHOU!`, `Ranking`, `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
-  
-    } else if (gameboard.gameBoardIsFilled()) showPopup("EMPATOU!", "Ranking", `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
+      modo == 2 && playerOfTheTurn == 2 ? 
+      (playerScores[3]++, localStorage.setItem(`player${3}Score`, playerScores[3])) : 
+      (playerScores[playerOfTheTurn]++, localStorage.setItem(`player${playerOfTheTurn}Score`, playerScores[playerOfTheTurn]));
+     
+      modo == 2 ? showPopup(`O JOGADOR ${playerOfTheTurn == 2 ? 'BOT' : playerOfTheTurn} GANHOU!`, `Ranking`, `Jogador 1: ganhou ${playerScores[1]} vezes`, `BOT: ganhou ${playerScores[3]} vezes`) : showPopup(`O JOGADOR ${playerOfTheTurn} GANHOU!`, `Ranking`, `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
+    } else if (gameboard.gameBoardIsFilled()) {
+      modo == 2 ? showPopup("EMPATOU!", "Ranking", `Jogador 1: ganhou ${playerScores[1]} vezes`, `BOT: ganhou ${playerScores[3]} vezes`) : showPopup("EMPATOU!", "Ranking", `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
+  }
     else if (playerOfTheTurn === 1 && modo === 2) callBot(); // Se quem aabou de jogar foi o player 1 e o está no modo Player X BOT 
 
     playerOfTheTurn = nextPlayer;
