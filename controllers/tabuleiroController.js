@@ -13,10 +13,9 @@ function renderGameboard(size) {
   boardEl.style.gridTemplateColumns = gridValue;
 
   const cells = Array.from({ length: size * size }, (_, index) => {
-    const el = document.createElement('div');
+    const el = document.createElement('button');
     el.className = 'cell';
     el.innerText = '' + (index + 1);
-    el.role = 'button';
     el.tabIndex = index + 1;
 
     el.addEventListener('click', () => console.log(index)); // TODO: Fazer com que o ENTER funcione como click

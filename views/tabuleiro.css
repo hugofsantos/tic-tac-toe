@@ -48,7 +48,9 @@ span.round-text {
   justify-content: center;
   align-items: center;
 
-  cursor: pointer;  
+  border: none;
+
+  cursor: pointer;
 }
 
 .player1-color {
