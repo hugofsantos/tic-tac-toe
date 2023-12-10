@@ -16,6 +16,10 @@ function renderGameboard(size) {
     const el = document.createElement('div');
     el.className = 'cell';
     el.innerText = '' + (index + 1);
+    el.role = 'button';
+    el.tabIndex = index + 1;
+
+    el.addEventListener('click', () => console.log(index)); // TODO: Fazer com que o ENTER funcione como click
 
     const row = Math.floor(index / size);
     const col = index % size;
