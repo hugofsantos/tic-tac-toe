@@ -13,6 +13,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="./index.css">
   <title>Tic-Tac-Toe</title>
+  <script src="../index.js" defer></script>
 </head>
 
 <body>
@@ -36,21 +37,5 @@
       </a>
     </section>
   </main>
-  <script>
-
-    var dimensao = ['3', '4', '5', '6', '7', '8', '9', '10'];
-    dimensao.forEach(function (item) {
-      $('select').append('<option>' + item + '</option>');
-    })
-
-    onsubmit = () => {
-      const select = document.getElementById('select');
-      const form = document.getElementById('form');
-      const dimensao = select.value;
-      const modo = form.modo.value;
-      form.action = `./tabuleiro.html?dimensao=${dimensao}&modo=${modo}`;
-    }
-
-  </script>
 </body>
 </html>
