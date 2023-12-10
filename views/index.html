@@ -14,26 +14,41 @@
   <link rel="stylesheet" href="./index.css">
   <title>Tic-Tac-Toe</title>
 </head>
+
 <body>
   <main>
-    <header id="cabecalho">
-      <h3>Digite a ordem do jogo da velha</h3>
-      <select id="select"></select>
-    </header>
-    <section id="btnPlayer">
-      <button class="button" type="button" style="background: #3F54E4;">Jogar sozinho</button>
-      <button class="button" type="button" style="background: #3FE446;">Jogar multiplayer</button>
-    </section>
+    <form id="form" method="GET">
+      <header id="cabecalho">
+        <h3>Digite a ordem do jogo da velha</h3>
+        <select id="select" name="dimensao"></select>
+      </header>
+      <section id="btnPlayer">
+        <button class="button" type="submit" name="modo" value="1" style="background: #3F54E4;">Jogador vs
+          Jogador</button>
+        <button class="button" type="submit" name="modo" value="2" style="background: #3FE446;">Jogador vs
+          Computador</button>
+      </section>
+    </form>
     <section id="info">
       <h3>Como funciona? (Documentação)</h3>
       <button id="btn">Baixar PDF</button>
     </section>
   </main>
   <script>
+
     var dimensao = ['3', '4', '5', '6', '7', '8', '9', '10'];
     dimensao.forEach(function (item) {
       $('select').append('<option>' + item + '</option>');
     })
+
+    onsubmit = () => {
+      const select = document.getElementById('select');
+      const form = document.getElementById('form');
+      const dimensao = select.value;
+      const modo = form.modo.value;
+      form.action = `./tabuleiro.html?dimensao=${dimensao}&modo=${modo}`;
+    }
+
   </script>
 </body>
 </html>

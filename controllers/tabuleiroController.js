@@ -27,6 +27,8 @@ function renderGameboard(size) {
   boardEl.append(...cells);
 }
 
-const size = Number(prompt('Informe a dimensão: ')); // TODO: Pegar esse valor da página index.html
+const urlParams = new URLSearchParams(window.location.search);
+const size = Number(urlParams.get('dimensao')); 
+const modo = Number(urlParams.get('modo'));
 
 renderGameboard(size);
