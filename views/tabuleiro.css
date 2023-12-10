@@ -10,22 +10,19 @@
 
   justify-content: center;
   align-items: center;
-  background-color: tomato;
 }
 
 #gameboard {
   display: grid;
-
   width: 90%;
   height: 90%;
-  background-color: green;
-
+  background-color: #ffffff;
   row-gap: 2%;
   column-gap: 2%;
 }
 
 .cell {
   text-align: center;
-  background-color: blue;
+  background-color: #a5a5a5;
 }
 
