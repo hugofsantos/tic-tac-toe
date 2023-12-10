@@ -21,3 +21,8 @@ Esse é um projeto da disciplina de **Desenvolvimento de Sistemas WEB 1** (IMD04
 3. **Jogando o Jogo:**
    - Se for uma partida entre dois jogadores, eles alternam entre suas jogadas, marcando o tabuleiro com seu símbolo (X ou O).
    - Se for jogador contra BOT, o jogador faz sua jogada e o BOT responde automaticamente.
+
+
+## Autores
+| [<img alt="Hugofsantos" src="https://github.com/hugofsantos.png?size=115" width="115"><br><sub>@Hugofsantos</sub>](https://github.com/hugofsantos)<p>Hugo Santos</p>| [<img alt="Rubenfilipe07" src="https://github.com/rubenfilipe07.png?size=115" width="115"><br><sub>@Rubenfilipe07</sub>](https://github.com/rubenfilipe07)<p>Rúben Filipe</p>| [<img alt="Vanessa-Maria2" src="https://github.com/Vanessa-Maria2.png?size=115" width="115"><br><sub>@Vanessa-Maria2</sub>](https://github.com/Vanessa-Maria2)<p>Vanessa Maria</p>| 
+| :---: |:---: |:---: |
