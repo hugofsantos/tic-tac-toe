@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jogo Tic-Tac-Toe (Jogo da velha)">
+  <title>Tic-Tac-Toe</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">
+  <title>Tic-Tac-Toe</title>
+</head>
+<body>
+  <main>
+    <header id="cabecalho">
+      <h3>Digite a ordem do jogo da velha</h3>
+      <select id="select"></select>
+    </header>
+    <section id="btnPlayer">
+      <button class="button" type="button" style="background: #3F54E4;">Jogar sozinho</button>
+      <button class="button" type="button" style="background: #3FE446;">Jogar multiplayer</button>
+    </section>
+    <section id="info">
+      <h3>Como funciona? (Documentação)</h3>
+      <button id="btn">Baixar PDF</button>
+    </section>
+  </main>
+  <script>
+    var dimensao = ['3', '4', '5', '6', '7', '8', '9', '10'];
+    dimensao.forEach(function (item) {
+      $('select').append('<option>' + item + '</option>');
+    })
+  </script>
+</body>
+</html>
