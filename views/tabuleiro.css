@@ -1,6 +1,11 @@
 * {
   padding: 0;
   margin: 0;
+
+  font-family: 'Indie Flower', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 58.36px;
 }
 
 #main {
@@ -10,19 +15,46 @@
 
   justify-content: center;
   align-items: center;
+
+  flex-direction: column;
+}
+
+#round {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  width: 80%;
+  padding: 1%;
+}
+
+span.round-text {
+  align-self: flex-end;
 }
 
 #gameboard {
   display: grid;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
   background-color: #ffffff;
   row-gap: 2%;
   column-gap: 2%;
 }
 
 .cell {
-  text-align: center;
+  display: flex;
   background-color: #a5a5a5;
+
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;  
 }
 
+.player1-color {
+  color: #3F54E4;
+}
+
+.player2-color {
+  color: #EC4A4A;;
+}
