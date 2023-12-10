@@ -14,8 +14,8 @@ export class Bot {
 
     if(!available.length) return;
 
-    const size = this.gameBoard.size;
-    const positionIndex = getRndInteger(0, available.length);
+    const size = board.length;  
+    const positionIndex = getRndInteger(0, available.length - 1);
     const positionNumber = available[positionIndex];
 
     const row = Math.floor(positionNumber / size);
