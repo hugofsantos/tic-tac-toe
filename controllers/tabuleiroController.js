@@ -1,6 +1,16 @@
 import { GameBoard } from "../models/GameBoard.js";
 
 let gameboard;
+let playerOfTheTurn = 1; // Começa o turno com o jogador 1
+
+const roundTextEl = document.querySelector("#round > span.round-text");
+roundTextEl.innerText = `Vez do Jogador ${playerOfTheTurn}`;
+roundTextEl.classList.add(`player${playerOfTheTurn}-color`);
+
+const playerSimbols = {
+  1: 'X',
+  2: 'O'
+}
 
 function renderGameboard(size) {
   gameboard = new GameBoard(size);
@@ -18,7 +28,7 @@ function renderGameboard(size) {
     el.innerText = '' + (index + 1);
     el.tabIndex = index + 1;
 
-    el.addEventListener('click', () => console.log(index)); // TODO: Fazer com que o ENTER funcione como click
+    el.addEventListener('click', makePlay);
 
     const row = Math.floor(index / size);
     const col = index % size;
@@ -28,6 +38,32 @@ function renderGameboard(size) {
   });
 
   boardEl.append(...cells);
+}
+
+function makePlay(event) {
+  const element = event.srcElement;
+
+  const [rowStr, colStr] = element.id.replace('cell-', '').split('-');
+  const row = Number(rowStr);
+  const col = Number(colStr);
+
+  if(gameboard.makeMove(row, col, playerOfTheTurn)) {
+    const nextPlayer = playerOfTheTurn === 1 ? 2 : 1; 
+
+    const className = `player${playerOfTheTurn}-color`;
+    element.innerText = playerSimbols[playerOfTheTurn];
+    element.classList.add(className);
+
+    roundTextEl.innerText = `Vez do Jogador ${nextPlayer}`;
+    roundTextEl.classList.replace(className, className.replace(String(playerOfTheTurn), String(nextPlayer)));
+    
+    if(gameboard.playerWins(playerOfTheTurn)) {
+      alert(`JOGADOR ${playerOfTheTurn} GANHOU`); // TODO: MOSTRAR POP UP
+    } else if (gameboard.gameBoardIsFilled()) alert("EMPATOU"); // TODO: MOSTRAR POP UP
+
+
+    playerOfTheTurn = nextPlayer;
+  }
 }
 
 const urlParams = new URLSearchParams(window.location.search);
