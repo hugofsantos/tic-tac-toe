@@ -2,6 +2,7 @@ import { GameBoard } from "../models/GameBoard.js";
 import { Bot } from "../models/Bot.js";
 
 const bot = new Bot();
+let botIsPlaing = false;
 
 let gameboard;
 let playerOfTheTurn = 1; // Começa o turno com o jogador 1
@@ -75,17 +76,20 @@ function onClickCell(event) {
   const [rowStr, colStr] = element.id.replace('cell-', '').split('-');
   const row = Number(rowStr);
   const col = Number(colStr);
-
-  makePlay(row, col, element);
+  
+  if(!botIsPlaing) makePlay(row, col, element);
 }
 
 function callBot() {
+  botIsPlaing = true;
+  
   setTimeout(() => {
     const [row, col] = bot.makePlay(gameboard.getBoardValues());
     const element = document.getElementById(`cell-${row}-${col}`); 
 
 
     makePlay(row, col, element);
+    botIsPlaing = false;
   }, 1000); // O BOT vai demorar 1 segundo pra jogar (Pra não ficar tão rápido)
 }
 
