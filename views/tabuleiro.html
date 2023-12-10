@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
   <script type="module" src="../controllers/tabuleiroController.js" defer></script>
 </head>
+
 <body>
   <main id="main">
     <section id="round">
@@ -16,5 +18,23 @@
     <section id="gameboard">
     </section>
   </main>
+
+  <div id="popup">
+    <div id="popup-content">
+      <h2 id="popup-title"></h2>
+
+      <p id="popup-text"></p>
+
+      <div id="ranking">
+        <p id="rankinJogador1"></p>
+        <p id="rankinJogador2"></p>
+      </div>
+
+      <div class="popup-btns">
+        <button class="popup-btn" id="new-game-btn">Novo jogo</button>
+        <button class="popup-btn" id="new-ranking-btn">Reiniciar ranking</button>
+      </div>
+    </div>
 </body>
+
 </html>

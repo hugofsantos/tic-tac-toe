@@ -17,9 +17,21 @@ const playerSimbols = {
 }
 
 const playerScores = {
-  1: 0,
-  2: 0
+  1: localStorage.getItem('player1Score') || 0,
+  2: localStorage.getItem('player2Score') || 0
 };
+
+
+document.getElementById('new-game-btn').addEventListener('click', function() {
+ window.location.href = 'index.html'; 
+});
+
+document.getElementById('new-ranking-btn').addEventListener('click', function() {
+  localStorage.setItem('player1Score', 0);
+  localStorage.setItem('player2Score', 0);
+  showPopup('Ranking resetado', 'O ranking foi resetado com sucesso!');
+ });
+ 
 
 function renderGameboard(size) {
   gameboard = new GameBoard(size);
@@ -48,6 +60,15 @@ function renderGameboard(size) {
   boardEl.append(...cells);
 }
 
+function showPopup(title, content, rankingJogador1, rankingJogador2) {
+  document.getElementById('popup-title').textContent = title;
+  document.getElementById('popup-text').textContent = content;
+  document.getElementById('rankinJogador1').textContent = rankingJogador1;
+  document.getElementById('rankinJogador2').textContent = rankingJogador2;
+  document.getElementById('popup').style.display = 'flex';
+}
+
+
 function makePlay(row, col, element) {
   if (gameboard.makeMove(row, col, playerOfTheTurn)) {
     const nextPlayer = playerOfTheTurn === 1 ? 2 : 1;
@@ -61,9 +82,10 @@ function makePlay(row, col, element) {
 
     if (gameboard.playerWins(playerOfTheTurn)) {
       playerScores[playerOfTheTurn]++;
-      alert(`JOGADOR ${playerOfTheTurn} GANHOU.`); // TODO: MOSTRAR POP UP
-      console.log(playerScores[1], playerScores[2]);
-    } else if (gameboard.gameBoardIsFilled()) alert("EMPATOU"); // TODO: MOSTRAR POP UP
+      localStorage.setItem(`player${playerOfTheTurn}Score`, playerScores[playerOfTheTurn]);
+      showPopup(`JOGADOR ${playerOfTheTurn} GANHOU!`, `Ranking`, `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
+  
+    } else if (gameboard.gameBoardIsFilled()) showPopup("EMPATOU!", "Ranking", `Jogador 1: ganhou ${playerScores[1]} vezes`, `Jogador 2: ganhou ${playerScores[2]} vezes`);
     else if (playerOfTheTurn === 1 && modo === 2) callBot(); // Se quem aabou de jogar foi o player 1 e o está no modo Player X BOT 
 
     playerOfTheTurn = nextPlayer;
