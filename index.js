@@ -9,5 +9,5 @@ onsubmit = () => {
   const form = document.getElementById('form');
   const dimensao = select.value;
   const modo = form.modo.value;
-  form.action = `./tabuleiro.html?dimensao=${dimensao}&modo=${modo}`;
+  form.action = `./views/tabuleiro.html?dimensao=${dimensao}&modo=${modo}`;
 };

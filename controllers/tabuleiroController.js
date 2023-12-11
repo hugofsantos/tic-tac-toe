@@ -24,7 +24,7 @@ const playerScores = {
 
 
 document.getElementById('new-game-btn').addEventListener('click', function() {
- window.location.href = 'index.html'; 
+ window.location.href = '../index.html'; 
 });
 
 document.getElementById('new-ranking-btn').addEventListener('click', function() {
